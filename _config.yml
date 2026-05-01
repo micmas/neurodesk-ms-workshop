@@ -1,0 +1,14 @@
+# GitHub Pages configuration (Jekyll).
+# Used only when this repo is public AND Pages is enabled in repo Settings.
+# Until then, this file is harmless.
+
+title: "Neurodesk for MS"
+description: "Workshop materials: slides, example workflows, and clinical applications of Neurodesk in Multiple Sclerosis."
+theme: jekyll-theme-cayman   # built-in GitHub theme; swap if desired
+show_downloads: false
+
+# Exclude folders that don't need to be on the site
+exclude:
+  - LICENSE
+  - .gitignore
+  - workflows/*.ipynb_checkpoints

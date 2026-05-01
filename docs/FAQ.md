@@ -1,0 +1,45 @@
+# FAQ & Troubleshooting
+
+## General
+
+**Q: I'm new to containers — what do I need to know?**
+For this workshop, nothing. Use Neurodesk Play (browser only) or run one Docker command from `setup/`. You don't need to write a Dockerfile.
+
+**Q: Can I use my hospital scanner data?**
+Yes, but ensure the data is de-identified before analysis. See `data/README.md` for a defacing example.
+
+**Q: Do I need a GPU?**
+No for the core notebooks (01–04). Yes if you want to try deep-learning lesion segmentation (e.g. nicMSlesions).
+
+## Running notebooks
+
+**Q: A notebook says "module not found" for `nibabel`/`nilearn`.**
+From a Neurodesk terminal: `pip install nibabel nilearn`. Most are already installed.
+
+**Q: SAMSEG runs forever.**
+SAMSEG is single-threaded by default. Add `--threads 4` (or more) and it should finish in ~15 min on typical clinical 1mm T1+FLAIR.
+
+**Q: SIENA outputs PBVC=0 or NaN.**
+Usually means the brain extractions of TP1/TP2 disagree wildly. Inspect `report.html` from SIENA — it shows the registration intermediate steps.
+
+## MS-specific
+
+**Q: Why so many lesion segmentation tools? Which should I pick?**
+Pragmatic ranking for clinical workflows:
+1. **SAMSEG** — best general-purpose, sequence-flexible, no training needed
+2. **LST-LPA** (SPM) — widely used, simple, FLAIR-only
+3. **Deep learning** (nicMSlesions, etc.) — best accuracy when in-domain, fragile out-of-domain
+
+**Q: My scans are 3T but the pipeline was developed at 1.5T — does it matter?**
+For SAMSEG and SIENA, no. For some deep-learning tools, yes — check the training distribution.
+
+**Q: How do I report lesion counts vs lesion volume?**
+Lesion *volume* is more reproducible. Lesion *count* requires a connected-component step (e.g. `cluster --in=lesions.nii.gz --thresh=0.5`) and is sensitive to confluent lesions.
+
+## Reproducibility
+
+**Q: How do I make my pipeline reproducible?**
+Pin the Neurodesk image tag (e.g. `vnmd/neurodesktop:2025-04-01` instead of `latest`) and commit your notebooks + the exact `ml load <toolname>/<version>` calls.
+
+**Q: Can I share a sealed container with my analysis?**
+Yes — see Neurodesk's "build your own" docs for creating a custom container that bundles the workshop's tools at fixed versions.
