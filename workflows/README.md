@@ -1,53 +1,34 @@
-# Example Workflows
+# Workshop notebook
 
-These notebooks demonstrate typical MS imaging analyses inside Neurodesk. Each one is self-contained and uses openly available example data — see [`../data/`](../data) for download instructions.
+The whole workshop is one self-contained notebook:
 
-| # | Notebook | What it covers |
+**[`ms_workshop.ipynb`](./ms_workshop.ipynb)**
+
+It runs end-to-end inside Neurodesk and covers:
+
+| Section | What it does | Tools |
 |---|---|---|
-| 00 | [`00_validate_setup.ipynb`](./00_validate_setup.ipynb) | Confirms Neurodesk modules load (FSL, ANTs, FreeSurfer, MRtrix3) |
-| 01 | [`01_preprocessing_t1_flair.ipynb`](./01_preprocessing_t1_flair.ipynb) | Brain extraction, bias correction, T1↔FLAIR coregistration |
-| 02 | [`02_lesion_segmentation_samseg.ipynb`](./02_lesion_segmentation_samseg.ipynb) | WM lesion segmentation with FreeSurfer SAMSEG |
-| 03 | [`03_brain_volumetry_longitudinal.ipynb`](./03_brain_volumetry_longitudinal.ipynb) | Longitudinal brain volume change with SIENA |
-| 04 | [`04_spinal_cord_toolbox.ipynb`](./04_spinal_cord_toolbox.ipynb) | Cord segmentation and CSA with Spinal Cord Toolbox |
-| 05 | [`05_quantitative_mri.ipynb`](./05_quantitative_mri.ipynb) | T1/T2 mapping and MTR analysis |
+| 1. Set up | Load tools into the kernel, check the Python stack | `lmod`, FSL, FreeSurfer |
+| 2. Get data | Download an open MS dataset (co-registered T1/T2/FLAIR + expert lesion masks, plus a longitudinal subject) | `git` / `open_ms_data` |
+| 3. Look at the data | MS lesion appearance on FLAIR vs T1 | nilearn |
+| 4. Lesion segmentation | Segment WM lesions and score against the expert mask (Dice) | FreeSurfer SAMSEG |
+| 5. Brain atrophy | Longitudinal percentage brain volume change (PBVC) | FSL SIENA |
+| 6. Going further | Spinal cord CSA and MTR on your own data (guarded cells) | SCT, nibabel |
 
-## How to use these notebooks
+## How to use it
 
-1. Start Neurodesk (see [`../setup/`](../setup))
-2. Inside Neurodesk, open a terminal and clone this repo:
+1. Start Neurodesk — easiest is [Neurodesk Play](https://play.neurodesk.org/) (browser, no install). See [`../setup/`](../setup).
+2. Inside Neurodesk, open a terminal and clone this repo into persistent storage:
    ```bash
    cd /neurodesktop-storage
-   git clone https://github.com/<your-username>/neurodesk-ms-workshop.git
-   cd neurodesk-ms-workshop/workflows
+   git clone https://github.com/micmas/neurodesk-ms-workshop.git
    ```
-3. Launch JupyterLab from the Neurodesk menu and open the notebook of interest
-4. Run cells top to bottom
+3. Open `neurodesk-ms-workshop/workflows/ms_workshop.ipynb` in JupyterLab.
+4. Run the cells top to bottom.
 
-## Module loading pattern
+## Notes
 
-Inside any notebook, neuroimaging tools are loaded with `ml`:
-
-```python
-import subprocess
-def ml(cmd):
-    subprocess.run(f"bash -lc 'ml load {cmd}'", shell=True, check=True)
-
-ml("fsl")
-ml("freesurfer")
-ml("mrtrix3")
-```
-
-Or from a terminal cell:
-```bash
-%%bash
-ml load fsl
-bet input.nii.gz output_brain.nii.gz -f 0.4
-```
-
-## Notes for the workshop
-
-- **00** and **01** are the warm-up — everyone should run these.
-- **02** is the core MS demo (lesion segmentation).
-- **03–05** are advanced; cover whichever fits the audience.
-
-> The `.ipynb` files in this folder are starter scaffolds. Workshop attendees will add cells live during the session, then push their version back to a fork.
+- The dataset download (section 2) is a few hundred MB and pulls automatically — no manual setup needed.
+- SAMSEG (section 4) takes ~10–20 min; everything else is quick.
+- Module loading uses the Neurodesk pattern `import lmod; await lmod.load('fsl')`. If a load reports an unknown version, run `await lmod.avail('fsl')` and pin one.
+- Sections 4–5 run on the downloaded open data. Section 6 (cord / qMRI) only runs if you supply your own data at the paths shown.

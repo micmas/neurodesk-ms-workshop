@@ -19,7 +19,7 @@ Neurodesk Play is a free hosted version that runs in your browser.
 3. Launch a session — you get a full Linux desktop with all neuroimaging tools preinstalled
 4. Upload your data, or clone this repo from the terminal:
    ```bash
-   git clone https://github.com/<your-username>/neurodesk-ms-workshop.git
+   git clone https://github.com/micmas/neurodesk-ms-workshop.git
    ```
 
 **Limits:** Neurodesk Play is for trying things out — sessions are time-limited and storage is small. For real analyses, install locally.

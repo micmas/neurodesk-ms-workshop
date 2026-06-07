@@ -26,7 +26,7 @@ Multiple Sclerosis presents specific imaging challenges that benefit directly fr
 |---|---|---|
 | Slides | [`slides/`](./slides) | Presentation deck (PPTX/PDF) |
 | Setup guide | [`setup/`](./setup) | Install Neurodesk on your machine |
-| Example workflows | [`workflows/`](./workflows) | Jupyter notebooks for MS imaging tasks |
+| Workshop notebook | [`workflows/`](./workflows) | One self-contained notebook: setup → data → lesions → atrophy |
 | Dataset pointers | [`data/`](./data) | Where to find example MS datasets |
 | Extras | [`docs/`](./docs) | Reference materials, FAQ, troubleshooting |
 
@@ -34,7 +34,7 @@ Multiple Sclerosis presents specific imaging challenges that benefit directly fr
 
 1. **Install Neurodesk** — see [`setup/README.md`](./setup/README.md). Easiest option: open [Neurodesk Play](https://play.neurodesk.org/) in your browser, no install needed.
 2. **Get example data** — see [`data/README.md`](./data/README.md). We use openly available MS datasets.
-3. **Run a workflow** — open the notebooks in [`workflows/`](./workflows) inside Neurodesk and follow along.
+3. **Run the workshop** — open [`workflows/ms_workshop.ipynb`](./workflows) inside Neurodesk and run it top to bottom. It downloads the data for you.
 
 ## Audience
 
