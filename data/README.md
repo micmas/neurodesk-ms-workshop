@@ -20,7 +20,7 @@ Notable examples:
 - **ds003505** — 7T qMRI in MS
 
 ### Neurodesk's bundled examples
-Neurodesk Play already includes small example datasets in `/data/` — quickest path for the validation notebook (00).
+Neurodesk Play already includes small example datasets in `/data/` — handy for a quick test.
 
 ## How to download
 

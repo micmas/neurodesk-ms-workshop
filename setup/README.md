@@ -102,7 +102,7 @@ mri_convert --version
 
 If each command prints a version, you're set.
 
-You can also try the validation notebook: [`workflows/00_validate_setup.ipynb`](../workflows/00_validate_setup.ipynb).
+Section 1 of the workshop notebook ([`workflows/ms_workshop.ipynb`](../workflows/ms_workshop.ipynb)) runs the same check from inside Neurodesk.
 
 ---
 

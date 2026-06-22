@@ -9,12 +9,12 @@ For this workshop, nothing. Use Neurodesk Play (browser only) or run one Docker 
 Yes, but ensure the data is de-identified before analysis. See `data/README.md` for a defacing example.
 
 **Q: Do I need a GPU?**
-No for the core notebooks (01–04). Yes if you want to try deep-learning lesion segmentation (e.g. nicMSlesions).
+No. The notebook runs on CPU (LST-AI is just slower without one). A GPU only helps if you go further with other deep-learning tools.
 
-## Running notebooks
+## Running the notebook
 
-**Q: A notebook says "module not found" for `nibabel`/`nilearn`.**
-From a Neurodesk terminal: `pip install nibabel nilearn`. Most are already installed.
+**Q: It says "module not found" for `nibabel`/`nilearn`.**
+The setup cell installs these automatically. To do it by hand from a Neurodesk terminal: `pip install nibabel nilearn`.
 
 **Q: SAMSEG runs forever.**
 SAMSEG is single-threaded by default. Add `--threads 4` (or more) and it should finish in ~15 min on typical clinical 1mm T1+FLAIR.

@@ -1,55 +1,52 @@
-# Neurodesk for Multiple Sclerosis: A Clinical Workshop
+# Neurodesk for Multiple Sclerosis — a hands-on workshop
 
-A hands-on workshop introducing **Neurodesk** — a containerised, reproducible neuroimaging analysis environment — with a focus on **clinical applications in Multiple Sclerosis (MS)**.
+Hands-on workshop materials for running reproducible **Multiple Sclerosis (MS)** neuroimaging analyses in **[Neurodesk](https://www.neurodesk.org/)**, a free, containerised environment that bundles 90+ neuroimaging tools (FSL, FreeSurfer, ANTs, MRtrix3, AFNI, SPM, and more) and runs on a laptop, an HPC cluster, or in the browser via [Neurodesk Play](https://play.neurodesk.org/).
 
-This repository contains all workshop materials: slides, example workflows, dataset pointers, and setup instructions.
+## Quick start
 
----
+1. **Open Neurodesk** — go to [play.neurodesk.org](https://play.neurodesk.org/) (browser, no install). Other options are in [`setup/`](./setup).
+2. **Clone this repo** in a Neurodesk terminal:
+   ```bash
+   cd /neurodesktop-storage
+   git clone https://github.com/micmas/neurodesk-ms-workshop.git
+   ```
+3. **Run the notebook** — open [`workflows/ms_workshop.ipynb`](./workflows/ms_workshop.ipynb) and run it top to bottom. It downloads the data and walks through the analyses.
 
-## What is Neurodesk?
+## What the workshop covers
 
-[Neurodesk](https://www.neurodesk.org/) is a free, open-source platform that bundles 90+ neuroimaging tools (FSL, FreeSurfer, ANTs, MRtrix3, AFNI, SPM, and more) into a portable container environment. It runs anywhere — laptops, HPC clusters, or in the browser via Neurodesk Play — and lets researchers and clinicians run reproducible analyses without manually installing each package.
+The notebook runs a complete MS imaging pipeline, one step at a time:
 
-## Why MS?
+1. Load the tools and set the working directory
+2. Download an open MS dataset
+3. View lesions on FLAIR vs T1 (interactive)
+4. White-matter lesion segmentation — FreeSurfer **SAMSEG** and **LST-AI**, scored against an expert mask (Dice)
+5. Longitudinal brain atrophy — FSL **SIENA**
+6. Going further — spinal cord (SCT) and quantitative MRI (MTR) on your own data
 
-Multiple Sclerosis presents specific imaging challenges that benefit directly from reproducible pipelines:
+Each analysis step is **timed** and **skipped automatically** if its results already exist, so the working directory can be pointed at a folder of pre-computed results to save time.
 
-- **Lesion detection and segmentation** on T2-FLAIR / T1-weighted sequences
-- **Longitudinal change** tracking (lesion load, brain volume, atrophy)
-- **Quantitative MRI** (T1/T2 mapping, MTR, susceptibility) for tissue characterisation
-- **Spinal cord imaging** — often as important as brain imaging in MS
-- **Cross-site harmonisation** for multi-centre clinical studies and trials
+## Repository layout
 
-## Workshop Structure
-
-| Section | Folder | Description |
-|---|---|---|
-| Slides | [`slides/`](./slides) | Presentation deck (PPTX/PDF) |
-| Setup guide | [`setup/`](./setup) | Install Neurodesk on your machine |
-| Workshop notebook | [`workflows/`](./workflows) | One self-contained notebook: setup → data → lesions → atrophy |
-| Dataset pointers | [`data/`](./data) | Where to find example MS datasets |
-| Extras | [`docs/`](./docs) | Reference materials, FAQ, troubleshooting |
-
-## Quick Start
-
-1. **Install Neurodesk** — see [`setup/README.md`](./setup/README.md). Easiest option: open [Neurodesk Play](https://play.neurodesk.org/) in your browser, no install needed.
-2. **Get example data** — see [`data/README.md`](./data/README.md). We use openly available MS datasets.
-3. **Run the workshop** — open [`workflows/ms_workshop.ipynb`](./workflows) inside Neurodesk and run it top to bottom. It downloads the data for you.
+| Folder | Contents |
+|---|---|
+| [`workflows/`](./workflows) | The workshop notebook, `ms_workshop.ipynb` |
+| [`setup/`](./setup) | How to run Neurodesk (Play, Docker, CLI) |
+| [`data/`](./data) | Pointers to open MS datasets |
+| [`docs/`](./docs) | FAQ and troubleshooting |
+| [`slides/`](./slides) | Presentation and hands-on guide |
 
 ## Audience
 
-Clinicians, radiologists, neurologists, MS researchers, and imaging scientists. No prior containerisation or scripting experience required, though Python/shell familiarity helps for the workflow sections.
+Clinicians, radiologists, neurologists, MS researchers, and imaging scientists. No containerisation experience needed; basic Python/shell familiarity helps for the analysis sections.
 
 ## License
 
-Materials are released under [CC BY 4.0](./LICENSE) — feel free to reuse and adapt with attribution.
+Released under [CC BY 4.0](./LICENSE) — reuse and adapt with attribution.
 
 ## Citation
-
-If these materials help your work, please cite Neurodesk:
 
 > Renton, A.I., Dao, T.T., Johnstone, T. et al. *Neurodesk: an accessible, flexible and portable data analysis environment for reproducible neuroimaging.* Nature Methods 21, 804–808 (2024). https://doi.org/10.1038/s41592-023-02145-x
 
 ## Contact
 
-Questions or issues? Open an issue on this repo or reach out to the workshop organiser.
+Open an issue on this repository or reach out to the workshop organiser.
