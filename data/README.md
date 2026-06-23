@@ -14,12 +14,17 @@ You don't need to download anything by hand — just run the notebook.
 
 If you want to try the workflow on more data:
 
-- **OpenNeuro** — filter by "multiple sclerosis" at https://openneuro.org/ (e.g. `ds004078` longitudinal MS, `ds002080` white-matter lesions, `ds003505` 7T qMRI). DataLad is available in Neurodesk, so you can fetch one subject at a time:
-  ```bash
-  datalad clone https://github.com/OpenNeuroDatasets/ds004078.git
-  cd ds004078 && datalad get sub-001/   # one subject at a time to save space
-  ```
-- **MSSEG-1 / MSSEG-2** challenges — multi-site MS lesion segmentation with FLAIR + T1 + T2 (registration required): https://portal.fli-iam.irisa.fr/msseg-2/
+- **MSLesSeg** — 115 scans from 75 patients (T1/T2/FLAIR + clinical data) with expert lesion masks: https://doi.org/10.1038/s41597-025-05250-y
+- **MSSEG-2 (MICCAI 2021)** — multi-site *new-lesion* segmentation challenge, two timepoints per patient (registration required): https://portal.fli-iam.irisa.fr/msseg-2/
+- **ISBI 2015** longitudinal MS lesion challenge — multiple timepoints per patient with expert masks.
+- **PediMS** — pediatric longitudinal MS lesion segmentation dataset.
+
+OpenNeuro hosts comparatively few MS-specific datasets — search "multiple sclerosis" at https://openneuro.org/ and, once you've picked one, fetch it with DataLad inside Neurodesk (substitute the dataset ID):
+
+```bash
+datalad clone https://github.com/OpenNeuroDatasets/<dataset-id>.git
+cd <dataset-id> && datalad get sub-001/   # one subject at a time to save space
+```
 
 To use your own data, point the `SUBJECT`/paths in the notebook at your T1 + FLAIR (+ an expert mask if you want a Dice score).
 
