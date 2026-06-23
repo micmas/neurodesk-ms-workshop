@@ -24,11 +24,12 @@ Usually means the brain extractions of TP1/TP2 disagree wildly. Inspect `report.
 
 ## MS-specific
 
-**Q: Why so many lesion segmentation tools? Which should I pick?**
-Pragmatic ranking for clinical workflows:
-1. **SAMSEG** — best general-purpose, sequence-flexible, no training needed
-2. **LST-LPA** (SPM) — widely used, simple, FLAIR-only
-3. **Deep learning** (nicMSlesions, etc.) — best accuracy when in-domain, fragile out-of-domain
+**Q: SAMSEG or LST-AI — which should I use?**
+The workshop runs both side by side so you can compare:
+1. **SAMSEG** — a generative atlas model, no MS training, robust across protocols and sequence-flexible.
+2. **LST-AI** — a deep-learning ensemble trained on MS data; often higher Dice in-domain, and it also labels lesions by region.
+
+Other deep-learning tools can do better in-domain but are more fragile out-of-domain — always check the training distribution against your data.
 
 **Q: My scans are 3T but the pipeline was developed at 1.5T — does it matter?**
 For SAMSEG and SIENA, no. For some deep-learning tools, yes — check the training distribution.

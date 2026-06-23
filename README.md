@@ -10,7 +10,15 @@ Hands-on workshop materials for running reproducible **Multiple Sclerosis (MS)**
    cd /neurodesktop-storage
    git clone https://github.com/micmas/neurodesk-ms-workshop.git
    ```
-3. **Run the notebook** — open [`workflows/ms_workshop.ipynb`](./workflows/ms_workshop.ipynb) and run it top to bottom. It downloads the data and walks through the analyses.
+3. **Run the notebook** — open [`workflows/ms_workshop-clear.ipynb`](./workflows/ms_workshop-clear.ipynb) and run it top to bottom. It downloads the data and walks through the analyses.
+
+## The notebooks
+
+| Notebook | Use it for |
+|---|---|
+| [`ms_workshop-clear.ipynb`](./workflows/ms_workshop-clear.ipynb) | **Start here** — the workshop notebook to run yourself (no saved outputs) |
+| [`ms_workshop.ipynb`](./workflows/ms_workshop.ipynb) | The same notebook already executed — a reference showing the expected outputs |
+| [`ms_workshop_benchmark.ipynb`](./workflows/ms_workshop_benchmark.ipynb) | Compares SAMSEG vs LST-AI across all processed subjects (Dice, by lesion size, clinical scores) |
 
 ## What the workshop covers
 
@@ -18,10 +26,10 @@ The notebook runs a complete MS imaging pipeline, one step at a time:
 
 1. Load the tools and set the working directory
 2. Download an open MS dataset
-3. View lesions on FLAIR vs T1 (interactive)
+3. View lesions on FLAIR vs T1 (interactive, with NiiVue)
 4. White-matter lesion segmentation — FreeSurfer **SAMSEG** and **LST-AI**, scored against an expert mask (Dice)
 5. Longitudinal brain atrophy — FSL **SIENA**
-6. Going further — spinal cord (SCT) and quantitative MRI (MTR) on your own data
+6. Group analysis — repeat across several subjects and relate lesion load to clinical disability (EDSS)
 
 Each analysis step is **timed** and **skipped automatically** if its results already exist, so the working directory can be pointed at a folder of pre-computed results to save time.
 
@@ -29,9 +37,9 @@ Each analysis step is **timed** and **skipped automatically** if its results alr
 
 | Folder | Contents |
 |---|---|
-| [`workflows/`](./workflows) | The workshop notebook, `ms_workshop.ipynb` |
+| [`workflows/`](./workflows) | The workshop notebooks (run, reference, benchmark) |
 | [`setup/`](./setup) | How to run Neurodesk (Play, Docker, CLI) |
-| [`data/`](./data) | Pointers to open MS datasets |
+| [`data/`](./data) | The dataset used, and pointers to other open MS data |
 | [`docs/`](./docs) | FAQ and troubleshooting |
 | [`slides/`](./slides) | Presentation and hands-on guide |
 

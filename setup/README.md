@@ -102,7 +102,7 @@ mri_convert --version
 
 If each command prints a version, you're set.
 
-Section 1 of the workshop notebook ([`workflows/ms_workshop.ipynb`](../workflows/ms_workshop.ipynb)) runs the same check from inside Neurodesk.
+Section 1 of the workshop notebook ([`workflows/ms_workshop-clear.ipynb`](../workflows/ms_workshop-clear.ipynb)) runs the same check from inside Neurodesk.
 
 ---
 

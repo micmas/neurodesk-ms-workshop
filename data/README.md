@@ -1,74 +1,38 @@
-# Example datasets for the workshop
+# Data
 
-We do **not** ship datasets in this repo (size + licensing). Instead, here are pointers to openly-available MS imaging datasets you can download into Neurodesk and use with the workflow notebooks.
+No imaging data is stored in this repo (size + licensing). The notebook downloads what it needs automatically.
 
-## Recommended for the workshop
+## What the workshop uses
 
-### MSSEG-1 / MSSEG-2 challenges
-Multi-site MS lesion segmentation challenges with FLAIR + T1 + T2.
+The notebook clones the **[open_ms_data](https://github.com/muschellij2/open_ms_data)** repository (a few hundred MB, fetched automatically in section 2). It packages the **Ljubljana 3D MS lesion benchmark**: co-registered, N4-corrected T1 / T2 / FLAIR with **expert consensus lesion masks**, plus a small longitudinal set. It also ships per-patient clinical data (age, sex, MS type, EDSS) used in the group analysis.
 
-- **MSSEG-2 (2021)** — https://portal.fli-iam.irisa.fr/msseg-2/
-- Registration required. 100 patients, two timepoints each — perfect for the longitudinal demo (notebook 03).
+> Lesjak Ž, et al. *A Novel Public MS Lesion Segmentation Benchmark.* Neuroinformatics 16, 51–63 (2018).
 
-### OpenNeuro datasets
+You don't need to download anything by hand — just run the notebook.
 
-OpenNeuro hosts many open MS datasets in BIDS format. Filter by "multiple sclerosis" at https://openneuro.org/.
+## Other open MS datasets
 
-Notable examples:
-- **ds004078** — Longitudinal MS imaging
-- **ds002080** — White matter lesions in MS
-- **ds003505** — 7T qMRI in MS
+If you want to try the workflow on more data:
 
-### Neurodesk's bundled examples
-Neurodesk Play already includes small example datasets in `/data/` — handy for a quick test.
+- **OpenNeuro** — filter by "multiple sclerosis" at https://openneuro.org/ (e.g. `ds004078` longitudinal MS, `ds002080` white-matter lesions, `ds003505` 7T qMRI). Fetch with DataLad inside Neurodesk:
+  ```bash
+  ml load datalad
+  datalad clone https://github.com/OpenNeuroDatasets/ds004078.git
+  cd ds004078 && datalad get sub-001/   # one subject at a time to save space
+  ```
+- **MSSEG-1 / MSSEG-2** challenges — multi-site MS lesion segmentation with FLAIR + T1 + T2 (registration required): https://portal.fli-iam.irisa.fr/msseg-2/
 
-## How to download
+To use your own data, point the `SUBJECT`/paths in the notebook at your T1 + FLAIR (+ an expert mask if you want a Dice score).
 
-Inside Neurodesk, in a terminal:
+## Using your own patient data — ethics & de-identification
 
-```bash
-cd /neurodesktop-storage
-mkdir ms-workshop-data && cd ms-workshop-data
+If you analyse **patient data** (not public datasets), make sure:
 
-# Example: OpenNeuro dataset via DataLad
-ml load datalad
-datalad clone https://github.com/OpenNeuroDatasets/ds004078.git
-cd ds004078
-datalad get sub-001/   # only fetch one subject to save space
-```
+- Data is fully de-identified — DICOM headers stripped and faces defaced (`pydeface`, or `mri_deface` from FreeSurfer).
+- Local IRB / ethics approval covers analysis in a container or cloud environment.
+- Data is **not** committed to this repo — `.gitignore` already excludes `*.nii.gz`, `*.dcm`, and the output folders.
 
-Or with `aws s3` (no account needed for OpenNeuro):
-```bash
-aws s3 sync --no-sign-request s3://openneuro.org/ds004078/sub-001 ./sub-001
-```
-
-## Expected layout for the notebooks
-
-The notebooks assume a BIDS-ish layout under `/neurodesktop-storage/ms-workshop-data/`:
-
-```
-ms-workshop-data/
-├── sub-001/
-│   ├── anat/
-│   │   ├── sub-001_T1w.nii.gz
-│   │   └── sub-001_FLAIR.nii.gz
-│   └── cord/
-│       └── sub-001_T2w_cord.nii.gz
-└── sub-001-longitudinal/
-    ├── sub-001_ses-01_T1w.nii.gz
-    └── sub-001_ses-02_T1w.nii.gz
-```
-
-Adjust paths at the top of each notebook to match your data.
-
-## Ethics & consent reminder
-
-If using **patient data** (not public datasets), make sure:
-- Data is fully de-identified (DICOM headers stripped, faces defaced — try `pydeface` or `mri_deface` from FreeSurfer)
-- Local IRB / ethics approval covers analysis with cloud or container tools
-- Data is **not** committed to this repo. The `.gitignore` already excludes `/data/raw/` and `*.nii.gz`.
-
-## Defacing example
+Defacing example:
 
 ```bash
 ml load freesurfer
