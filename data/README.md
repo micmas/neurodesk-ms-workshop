@@ -14,9 +14,8 @@ You don't need to download anything by hand — just run the notebook.
 
 If you want to try the workflow on more data:
 
-- **OpenNeuro** — filter by "multiple sclerosis" at https://openneuro.org/ (e.g. `ds004078` longitudinal MS, `ds002080` white-matter lesions, `ds003505` 7T qMRI). Fetch with DataLad inside Neurodesk:
+- **OpenNeuro** — filter by "multiple sclerosis" at https://openneuro.org/ (e.g. `ds004078` longitudinal MS, `ds002080` white-matter lesions, `ds003505` 7T qMRI). DataLad is available in Neurodesk, so you can fetch one subject at a time:
   ```bash
-  ml load datalad
   datalad clone https://github.com/OpenNeuroDatasets/ds004078.git
   cd ds004078 && datalad get sub-001/   # one subject at a time to save space
   ```
